@@ -1,17 +1,48 @@
-<script setup lang="ts">
-defineProps<{
-  msg: string
-}>()
-</script>
+<script>
+export default {
+  data: function () {
+    return {
+      items: null
+    }
+  },
+  methods: {
+    fetchData: function () {
+      let self = this
+      const myRequest = new Request('https://api.sampleapis.com/coffee/hot')
 
+      fetch(myRequest)
+          .then((response) => {
+            return response.json()
+          })
+          .then((data) => {
+           // debugger;
+            self.items = data
+            console.log(self.items)
+          }).catch(error => {
+        console.log(error);
+      });
+    }
+  },
+
+  mounted() {
+    this.fetchData()
+  },
+  props: ['msg'],
+  setup(props) {
+    // setup() receives props as the first argument.
+    console.log(props.msg)
+  }
+}
+</script>
 <template>
   <div class="greetings">
     <h1 class="green">{{ msg }}</h1>
-    <h3>
-      You’ve successfully created a project with
-      <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>. What's next?
-    </h3>
+    <ul>
+      <li v-for="item in items">
+        {{ item.title }} : {{ item.description }}
+      </li>
+    </ul>
+
   </div>
 </template>
 
