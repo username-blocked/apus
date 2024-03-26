@@ -6,17 +6,14 @@ import HelloWorld from './components/HelloWorld.vue'
 <template>
   <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
     <div class="wrapper">
-
-
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
       </nav>
     </div>
   </header>
-  <HelloWorld msg="Coffee API - simple list" />
+
   <RouterView />
 </template>
 
