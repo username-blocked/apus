@@ -37,11 +37,19 @@ export default {
 <template>
   <div class="greetings">
     <h1 class="green">{{ msg }}</h1>
-    <ul>
+    <v-list lines="one">
+      <v-list-item
+          v-for="item in items"
+          :key="item"
+          :title="item.title"
+          :subtitle="item.description"
+      ></v-list-item>
+    </v-list>
+<!--    <ul>
       <li v-for="item in items">
         {{ item.title }} : {{ item.description }}
       </li>
-    </ul>
+    </ul>-->
 
   </div>
 </template>
